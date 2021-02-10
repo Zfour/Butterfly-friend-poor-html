@@ -22,26 +22,26 @@ const friend_link_circle = new Vue({
         },
         formatDate(strDate) {
             try{
-                var date = new Date(Date.parse(strDate.replace(/-/g, "/")));
+                var date = new Date(Date.parse(strDate.replace(/-/g, "/")))
                 if (new Date().getTimezoneOffset()){
                     var gettimeoffset = new Date().getTimezoneOffset()
                 }
                 else{
                     var gettimeoffset = 8
                 }
-                var timeoffset = gettimeoffset * 60 * 1000;
-                var len = date.getTime();
-                var date2 = new Date(len - timeoffset);
+                var timeoffset = gettimeoffset * 60 * 1000
+                var len = date.getTime()
+                var date2 = new Date(len - timeoffset)
                 var sec = date2.getSeconds().toString()
                 var min =  date2.getMinutes().toString()
                 if (sec.length == 1) {
-                    sec = "0" + sec;
+                    sec = "0" + sec
                 }
                 if (min.length == 1) {
-                    min = "0" + min;
+                    min = "0" + min
                 }
                 var data_result = date2.getFullYear().toString() + "/" + (date2.getMonth() + 1).toString() + "/" + date2.getDate().toString()+ " "
-                    + date2.getHours().toString()+ ":"+ min + ":"+ sec;
+                    + date2.getHours().toString()+ ":"+ min + ":"+ sec
 
 
                 return data_result
@@ -53,17 +53,17 @@ const friend_link_circle = new Vue({
             return timeformat
         },
         todaypost(){
-            date= new Date();
-            var year = date.getFullYear();
-            var month =(date.getMonth() + 1).toString();
-            var day = (date.getDate()).toString();
+            date= new Date()
+            var year = date.getFullYear()
+            var month =(date.getMonth() + 1).toString()
+            var day = (date.getDate()).toString()
             if (month.length == 1) {
-                month = "0" + month;
+                month = "0" + month
             }
             if (day.length == 1) {
-                day = "0" + day;
+                day = "0" + day
             }
-            var dateTime = year + "-" + month + "-" + day;
+            var dateTime = year + "-" + month + "-" + day
             return  dateTime
         },
         addmaxnumber(){
@@ -78,17 +78,17 @@ const friend_link_circle = new Vue({
             data_slice = data
             for (item in data_slice) {
                 data_slice[item].push(item)
-                month=data_slice[item][1].slice(0,7);
+                month=data_slice[item][1].slice(0,7)
                 date= data_slice[item][1]
 
 
-                    if(monthlist.indexOf(month) != -1){
-                        console.log(month);
-                        datalist[monthlist.length-1][1].push(data_slice[item])
-                    }
-                    else{
-                        monthlist.push(month)
-                        datalist.push([month,[data_slice[item]]])
+                if(monthlist.indexOf(month) != -1){
+                    console.log(month)
+                    datalist[monthlist.length-1][1].push(data_slice[item])
+                }
+                else{
+                    monthlist.push(month)
+                    datalist.push([month,[data_slice[item]]])
                 }
             }
 
@@ -107,12 +107,12 @@ const friend_link_circle = new Vue({
             data => {
                 today = this.todaypost()
                 Datetody = new Date(today)
-                for (var item = 0; item <data[1].length; item++){
+                for (var item = 0; item <data[1].length ;item++){
                     Datedate = new Date(data[1][item][1])
-                        if (Datedate>Datetody){
-                            data[1].splice(item --, 1)
-                            console.log('穿越了')
-                        }
+                    if (Datedate>Datetody){
+                        data[1].splice(item --, 1)
+                        console.log('穿越了')
+                    }
                 }
                 this.datalist = data[1]
                 this.listlenth = data[1].length
