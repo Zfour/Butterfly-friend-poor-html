@@ -13,7 +13,8 @@ const friend_link_circle = new Vue({
         last_update_time:'',
         user_lenth:'',
         error:0,
-        unique_live_link:0
+        unique_live_link:0,
+        opentype:'_blank'  //'_blank'打开新标签,'_self'本窗口打开
 
     },
     methods:{
