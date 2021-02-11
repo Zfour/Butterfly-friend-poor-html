@@ -74,6 +74,16 @@ const friend_link_circle = new Vue({
             let data_slice = data;
             for (let item in data_slice) {
                 data_slice[item].push(item);
+                if (data_slice[item][1].lenth !== 10) {
+                    let list = data_slice[item][1].split('-')
+                        if (list[1].length < 2){
+                            list[1]="0" + list[1]
+                        }
+                        if (list[2].length < 2){
+                            list[2]="0" + list[2]
+                        }
+                    data_slice[item][1] = list.join('-')
+                    }
                 let month=data_slice[item][1].slice(0,7);
                 if(monthlist.indexOf(month) !== -1){
                     console.log(month);
