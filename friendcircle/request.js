@@ -1,4 +1,4 @@
-requests_url = 'https://hexo-circle-of-friends-api.vercel.app/api'
+requests_url = 'https://hexo-circle-of-friends-api.vercel.app/api';
 const friend_link_circle = new Vue({
     el: '#friend_link_circle',
     data: {
@@ -23,80 +23,72 @@ const friend_link_circle = new Vue({
         },
         formatDate(strDate) {
             try{
-                var date = new Date(Date.parse(strDate.replace(/-/g, "/")))
+                let date = new Date(Date.parse(strDate.replace(/-/g, "/")));
+                let gettimeoffset = 0
                 if (new Date().getTimezoneOffset()){
-                    var gettimeoffset = new Date().getTimezoneOffset()
+                    gettimeoffset = new Date().getTimezoneOffset();
                 }
                 else{
-                    var gettimeoffset = 8
+                    gettimeoffset = 8;
                 }
-                var timeoffset = gettimeoffset * 60 * 1000
-                var len = date.getTime()
-                var date2 = new Date(len - timeoffset)
-                var sec = date2.getSeconds().toString()
-                var min =  date2.getMinutes().toString()
-                if (sec.length == 1) {
-                    sec = "0" + sec
+                let timeoffset = gettimeoffset * 60 * 1000;
+                let len = date.getTime();
+                let date2 = new Date(len - timeoffset);
+                let sec = date2.getSeconds().toString();
+                let min =  date2.getMinutes().toString();
+                if (sec.length === 1) {
+                    sec = "0" + sec;
                 }
-                if (min.length == 1) {
-                    min = "0" + min
+                if (min.length === 1) {
+                    min = "0" + min;
                 }
-                var data_result = date2.getFullYear().toString() + "/" + (date2.getMonth() + 1).toString() + "/" + date2.getDate().toString()+ " "
-                    + date2.getHours().toString()+ ":"+ min + ":"+ sec
-
-
-                return data_result
+                return date2.getFullYear().toString() + "/" + (date2.getMonth() + 1).toString() + "/" + date2.getDate().toString() + " " + date2.getHours().toString() + ":" + min + ":" + sec
             }catch(e){return ""}
         },
         timezoon(){
-            time = this.datalist_slice[0][1][0][5]
-            timeformat = this.formatDate(time)
-            return timeformat
+            let time = this.datalist_slice[0][1][0][5];
+            return this.formatDate(time)
         },
         todaypost(){
-            date= new Date()
-            var year = date.getFullYear()
-            var month =(date.getMonth() + 1).toString()
-            var day = (date.getDate()).toString()
-            if (month.length == 1) {
-                month = "0" + month
+            let date= new Date();
+            let year = date.getFullYear();
+            let month =(date.getMonth() + 1).toString();
+            let day = (date.getDate()).toString();
+            if (month.length === 1) {
+                month = "0" + month;
             }
-            if (day.length == 1) {
-                day = "0" + day
+            if (day.length === 1) {
+                day = "0" + day;
             }
-            var dateTime = year + "-" + month + "-" + day
-            return  dateTime
+            return  year + "-" + month + "-" + day
         },
         addmaxnumber(){
-            this.maxnumber = this.maxnumber + this.addnumber
+            this.maxnumber = this.maxnumber + this.addnumber;
             if (this.maxnumber >= this.listlenth){
-                this.loadmore_display=false
+                this.loadmore_display=false;
             }
         },
         slice(data){
-            monthlist=[]
-            datalist=[]
-            data_slice = data
-            for (item in data_slice) {
-                data_slice[item].push(item)
-                month=data_slice[item][1].slice(0,7)
-                date= data_slice[item][1]
-
-
-                if(monthlist.indexOf(month) != -1){
-                    console.log(month)
-                    datalist[monthlist.length-1][1].push(data_slice[item])
+            let monthlist=[];
+            let datalist=[];
+            let data_slice = data;
+            for (let item in data_slice) {
+                data_slice[item].push(item);
+                let month=data_slice[item][1].slice(0,7);
+                if(monthlist.indexOf(month) !== -1){
+                    console.log(month);
+                    datalist[monthlist.length-1][1].push(data_slice[item]);
                 }
                 else{
-                    monthlist.push(month)
-                    datalist.push([month,[data_slice[item]]])
+                    monthlist.push(month);
+                    datalist.push([month,[data_slice[item]]]);
                 }
             }
 
-            for (mounthgroup  of datalist){
-                mounthgroup.push(mounthgroup[1][0][6])
+            for (let mounthgroup  of datalist){
+                mounthgroup.push(mounthgroup[1][0][6]);
             }
-            console.log(datalist)
+            console.log(datalist);
             return datalist
         }
     },
@@ -104,35 +96,35 @@ const friend_link_circle = new Vue({
 
         fetch(requests_url).then(
             data => data.json()
-        ).then(
+    ).then(
             data => {
-                today = this.todaypost()
-                Datetody = new Date(today)
-                for (var item = 0; item <data[1].length ;item++){
-                    Datedate = new Date(data[1][item][1])
+                let today = this.todaypost();
+                let Datetody = new Date(today);
+                for (let item = 0; item <data[1].length ;item++){
+                    let Datedate = new Date(data[1][item][1])
                     if (Datedate>Datetody){
-                        data[1].splice(item --, 1)
-                        console.log('穿越了')
+                        data[1].splice(item --, 1);
+                        console.log('穿越了');
                     }
                 }
-                this.datalist = data[1]
-                this.listlenth = data[1].length
-                this.user_lenth = data[0].length
-                this.datalist_slice = this.slice(data[1])
-                this.last_update_time =this.timezoon()
-                this.loadmore_display = true
-                link_list=[]
-                for (item of data[1]){
-                    if (item[1] == today ){
-                        this.today_post +=1
+                this.datalist = data[1];
+                this.listlenth = data[1].length;
+                this.user_lenth = data[0].length;
+                this.datalist_slice = this.slice(data[1]);
+                this.last_update_time =this.timezoon();
+                this.loadmore_display = true;
+                let link_list=[];
+                for (let item of data[1]){
+                    if (item[1] === today ){
+                        this.today_post +=1;
                     }
-                    link_list.push(item[3])
+                    link_list.push(item[3]);
                 }
-                arr = this.unique(link_list)
-                this.unique_live_link = arr.length
-                for (item of data[0]){
-                    if (item[3] == 'true' ){
-                        this.error +=1
+                let arr = this.unique(link_list);
+                this.unique_live_link = arr.length;
+                for (let item of data[0]){
+                    if (item[3] === 'true' ){
+                        this.error +=1;
                     }
                 }
             }
