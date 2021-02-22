@@ -144,13 +144,16 @@ float: right
     padding: 0 .8rem;
 }
 .article-sort-item-title {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
     font-size: 1.1em;
     -webkit-transition: all .3s;
     -moz-transition: all .3s;
     -o-transition: all .3s;
     -ms-transition: all .3s;
     transition: all .3s;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
 }
 </style>
 <script>
