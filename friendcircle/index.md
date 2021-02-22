@@ -28,7 +28,7 @@ style="display:flex;box-shadow: rgba(0, 0, 0, 0.07) 0px 2px 2px 0px, rgba(0, 0, 
 <div v-for="datalist in datalist_slice">
 <h2  v-if="datalist[2]-maxnumber<0" >&#123;&#123;datalist[0]&#125;&#125;</h2>
  <div v-if="item[6]-maxnumber<0" v-for="(item,i) in datalist[1]" class="article-sort-item" style="box-shadow: 0 2px 2px 0 rgba(0,0,0,.07), 0 1px 5px 0 rgba(0,0,0,.1);border-radius: 2px;">
-<a  :target="opentype" class="article-sort-item-img" :href="item[2]" :title="item[0]"><img onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-ll-status="loaded" class="entered loaded" :src="item[4]"></a>
+<a  :target="opentype" class="article-sort-item-img" :href="item[2]" :title="item[0]"><img onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/Zfour/Butterfly-friend-poor-html/friendcircle/404.png&quot;" data-ll-status="loaded" class="entered loaded" :src="item[4]"></a>
 <div class="article-sort-item-info"><div class="article-sort-item-time">
  <i class="far fa-user"></i>
 <span  style="padding-left:10px;padding-right:10px">&#123;&#123;item[3]&#125;&#125;</span>
